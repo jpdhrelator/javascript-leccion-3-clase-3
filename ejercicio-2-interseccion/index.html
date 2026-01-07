@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <script>
+        let arregloA= [1,2,3];
+        let arregloB= [2,3,4];
+
+        //() => {} arrow function o funcion de flecha
+ 
+        // let interseccion = arregloA.filter(
+        //      (x) => {
+        //         console.log("x-->",x);
+        //         if(x >1){
+        //             return x;
+        //         }
+        //      }
+        //  );
+
+        
+        
+        //let interseccion = arregloA.filter(x => arregloB.includes(x));
+        let interseccion = arregloA.filter((x) => {
+            if(arregloB.includes(x)){
+                return x;
+            }
+        });
+        console.log(interseccion);
+
+    </script>
+</body>
+</html>

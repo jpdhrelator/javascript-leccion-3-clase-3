@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <script>
+        let arregloA= [1,2];
+        let arregloB= [2,3];
+
+       // let arreglo = [...arregloA,...arregloB];
+
+       // console.log(arreglo);
+        
+       // let setNumeros= new Set([1,3,4,4,4,4,4,5,6,7,7,7]);
+      //  console.log("setNumero--->",setNumeros);
+        
+        let setArreglosAB=new Set([... arregloA, ...arregloB]);
+        console.log('setArreglosAB: ',setArreglosAB);
+        
+        let unionAB= [...setArreglosAB ];
+
+        console.log(unionAB);
+        
+
+
+        
+    </script>
+</body>
+</html>

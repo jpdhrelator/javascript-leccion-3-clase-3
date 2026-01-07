@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <script>
+        let arregloA= [1,2,3];
+        let arregloB= [2,3,4];
+
+        
+        
+        let diferencia =[
+                         ...arregloA.filter(x => !arregloB.includes(x)),
+                         ...arregloB.filter(x => !arregloA.includes(x))
+                        ];  
+        console.log(diferencia);
+
+    </script>
+</body>
+</html>
