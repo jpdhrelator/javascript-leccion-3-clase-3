@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio arreglos y matrices</title>
+</head>
+<body>
+    <h1>Evento Nutrigamers 2026</h1>
+    <img src="https://enlinea.santotomas.cl/web/wp-content/uploads/sites/2/2018/08/sample-e1534791756704-744x465.jpg" alt="evento-videojuegos">
+    <script>
+/**
+ * Escenario: Torneo de eSports "Nutrigamers 2026"
+ * Tema: competencia de videojuegos de RTS con jugadores locales y online.
+ * Objetivo: gestionar invitados (álgebra de conjuntos) y organizar el mapa del salón (matrices).*/
+
+/* FASE 1: Invitados*/
+
+// listas iniciales: jugadores locales (listaA) y jugadores online (listaB)
+const listaA = ["JohnMcpro", "Akira", "Nova", "PixelKing", "Luna", "Kuroga", "Vortex"];
+const listaB = ["Nova", "Sparks", "Luna", "Echo", "Byte", "Kuroga", "Zen"];
+
+// Unión (invitadosTotales): todos sin duplicar
+// Lógica de conjuntos: Unión = A ∪ B (aplicamos Set para eliminar los repetidos)
+const invitadosTotales = [...new Set([...listaA, ...listaB])];
+console.log("Invitados totales (Unión A ∪ B):", invitadosTotales);
+
+// intersección (listaVIP): aparecen en ambas listas
+// lógica de conjuntos: Intersección = A ∩ B
+const setB = new Set(listaB);
+const listaVIP = listaA.filter(nombre => setB.has(nombre));
+console.log(`Tenemos ${listaVIP.length} invitados VIP (Intersección A ∩ B):`, listaVIP);
+
+// diferencia (soloGrupoA): exclusivos de A que no están en B
+// lógica de conjuntos: Diferencia = A − B
+const soloGrupoA = listaA.filter(nombre => !setB.has(nombre));
+console.log("Exclusivos de grupo A (Diferencia A − B):", soloGrupoA);
+
+
+/* FASE 2: el Mapa del lugar (Matrices)*/
+
+// Creación del mapa 3x3 (0 = asiento vacío)
+const filas = 3;
+const columnas = 3;
+const mapa = Array.from({ length: filas }, () => Array(columnas).fill(0));
+
+console.log("mapa inicial 3x3:", mapa);
+
+// Asignación manual: marcar 1 en al menos 4 posiciones (ocupado)
+mapa[0][0] = 1;
+mapa[0][2] = 1;
+mapa[1][1] = 1;
+mapa[2][0] = 1;
+mapa[2][2] = 1;
+
+// zona reservada: colocar un VIP en una posición específica
+// se elige fila 1, columna 1 (índices base 0: [0][0] ya ocupado, se usa [1][1] o [0][1])
+// reservamos [1][2] para una VIP del listado para ser más específicos.
+const vipSeleccionado = listaVIP[0] || "invitado VIP";
+mapa[1][2] = vipSeleccionado;
+
+console.log("mapa tras asignaciones y reserva VIP:", mapa);
+
+/* FASE 3: análisis del mapa (ciclos anidados)*/
+
+let asientosDisponibles = 0;
+
+for (let i = 0; i < filas; i++) {
+  for (let j = 0; j < columnas; j++) {
+    // "vacío" cuando el valor es 0 obligatorio
+    if (mapa[i][j] === 0) {
+      asientosDisponibles++;
+    }
+  }
+}
+
+console.log(`Quedan ${asientosDisponibles} asientos disponibles en el evento`);
+
+
+/* FASE 4: perfil del ganador (arreglos asociativos / objeto)*/
+
+// ficha técnica del invitado de honor (obj asociativo)
+const invitadoDeHonor = {
+  Nombre: "Akira",
+  Edad: 24,
+  Categoría: "Speedrunner"
+};
+
+console.log(`El premio es para ${invitadoDeHonor.Nombre}, de la categoría ${invitadoDeHonor.Categoría}!`);</script>
+    
+</body>
+</html>
