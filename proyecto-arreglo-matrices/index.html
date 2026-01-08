@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organización Conferencia Medica</title>
+</head>
+<body>
+    <script>
+        /* Organización de una conferencia medica. 
+        Los invitados son medicos que expondran durante los dos dias que durara el evento.
+        la listaA son los medicos que presentan el primer dia.
+        la listaB son los medicos que expondran el segundo dia.*/
+
+        //definir las variables de las listas de invitados,
+        let listaA= ["Dr. Rodriguez", "Dr. Herrera", "Dra. Jimenez", "Dra. Diaz", "Dra. Jimenez"];
+        let listaB= ["Dra. Diaz", "Dr. Herrera", "Dr. Rojas", "Dr. Salas", "Dra. Jimenez"];
+        //variable que une ambas listas
+        let invitadosTotales = new Set ([... listaA, ...listaB]);
+        console.log('Lista total de invitados:', invitadosTotales);
+        let unionListas = [...invitadosTotales];
+        console.log('Lista total de invitados:',unionListas);
+        //listado Invitados VIP
+        let listaVIP = listaA.filter(x => listaB.includes(x));
+        console.log(`Tenemos ${listaVIP.length} invitados VIP:`,listaVIP);
+        //invitados exclusivos
+        let soloGrupoA = listaA.filter(x => !listaB.includes(x));
+        console.log(`Invitado exclusivo del primer día ${soloGrupoA.length}:`,soloGrupoA);
+
+        //asignación de asientos. inicializacion de la matriz.
+        let asientos = [   
+                          [0,0,0], // 0 
+                          [0,0,0],  // 1
+                          [0,0,0]  // 2
+                        ];
+
+        //ocupar 4 asientos con el valor 1 recorriendo sus indices.
+        asientos[0][1] = 1;
+        asientos[1][0] = 1;
+        asientos[1][2] = 1;
+        asientos[2][1] = 1;
+        //zona reservada
+        asientos[1][1] = listaA[0];
+        console.log("Mapa de asientos ocupados(1), disponibles(0) y reservado(VIP):",asientos);
+        
+        //asientos disponibles
+        let asientosdisponibles = 0; //definir una varible para los asientos disponibles
+
+        for( i=0; i< asientos.length; i++){ //doble for para buscar en los indices y sus elementos los asientos disponibles
+
+            for( j=0; j< asientos[i].length; j++){
+                if (asientos[i][j] == 0) {
+                    asientosdisponibles++; //cada elemento 0 representa los asientos disponibles se deben sumar++
+                }
+            } 
+        }
+        console.log(`Asientos disponibles del Evento: ${asientosdisponibles}`);
+
+        //Premio de honor al expositor destacado
+        let expositorDestacado = [];
+        expositorDestacado["Nombre"]="Dr. Rojas";
+        expositorDestacado["Edad"]="56 años";
+        expositorDestacado["Categoria"]="Expositor Destacado";
+        
+        console.log(`El premio es para ${expositorDestacado["Nombre"]} en la categoria de ${expositorDestacado["Categoria"]}`);
+
+    </script>
+    
+</body>
+</html>
