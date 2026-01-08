@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+/* EVENTO: Torneo de Don't Starve Together "DST Arena 2026"
+
+Gestión de jugadores invitados y distribución
+de asientos del escenario principal.
+*/
+
+// FASE 1: GESTIÓN DE JUGADORES
+
+// listaA = Jugadores Presenciales
+// listaB = Jugadores Online
+let listaA = ["Alex", "Bruno", "Camila", "Diego", "Sofía"];
+let listaB = ["Camila", "Diego", "Elena", "Fernando", "Alex"];
+
+// UNIÓN (jugadoresTotales)
+
+let jugadoresTotales = [];
+
+// Agregar listaA completa
+for (let i = 0; i < listaA.length; i++) {
+  jugadoresTotales.push(listaA[i]);
+}
+
+// Agregar listaB sin repetir
+for (let i = 0; i < listaB.length; i++) {
+  let existe = false;
+
+  for (let j = 0; j < jugadoresTotales.length; j++) {
+    if (listaB[i] === jugadoresTotales[j]) {
+      existe = true;
+    }
+  }
+
+  if (existe === false) {
+    jugadoresTotales.push(listaB[i]);
+  }
+}
+
+console.log("Jugadores Totales:");
+for (let i = 0; i < jugadoresTotales.length; i++) {
+  console.log(`- ${jugadoresTotales[i]}`);
+}
+
+// INTERSECCIÓN (VIPs)
+
+let jugadoresVIP = [];
+
+for (let i = 0; i < listaA.length; i++) {
+  for (let j = 0; j < listaB.length; j++) {
+    if (listaA[i] === listaB[j]) {
+      jugadoresVIP.push(listaA[i]);
+    }
+  }
+}
+
+console.log(`Tenemos ${jugadoresVIP.length} jugadores VIP`);
+console.log(`VIPs: ${jugadoresVIP}`);
+
+// DIFERENCIA (solo presenciales)
+
+let soloPresenciales = [];
+
+for (let i = 0; i < listaA.length; i++) {
+  let estaEnOnline = false;
+
+  for (let j = 0; j < listaB.length; j++) {
+    if (listaA[i] === listaB[j]) {
+      estaEnOnline = true;
+    }
+  }
+
+  if (estaEnOnline === false) {
+    soloPresenciales.push(listaA[i]);
+  }
+}
+
+console.log(`Solo presenciales: ${soloPresenciales.length}`);
+console.log(`Detalle: ${soloPresenciales}`);
+
+// FASE 2: MAPA DEL ESCENARIO
+
+// Matriz 3x3 (0 = asiento libre)
+let mapaEscenario = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0]
+];
+
+
+    </script>
+</body>
+</html>
